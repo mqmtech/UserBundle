@@ -70,8 +70,10 @@ class UserManager implements UserManagerInterface {
     {
         $securityContext = $this->getSecurityContext();
         if ($securityContext != null) {
-            $user = $securityContext->getToken()->getUser(); 
-            return $user;
+            $token = $securityContext->getToken();
+            if ($token) 
+                return $token->getUser(); 
+            return 'anon';
         }
         else {
             throw new \Exception("Custom Exception: No SecurityContext has been setted in UserManager");
@@ -160,5 +162,3 @@ class UserManager implements UserManagerInterface {
         return $this->repository;
     }
 }
-
-?>
