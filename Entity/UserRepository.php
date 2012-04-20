@@ -22,4 +22,4 @@ class UserRepository extends EntityRepository
     }
 }
 
-?>
+
