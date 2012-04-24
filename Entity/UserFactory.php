@@ -3,7 +3,7 @@
 namespace MQM\UserBundle\Entity;
 
 use MQM\UserBundle\Model\UserFactoryInterface;
-use MQM\UserBundle\Entity\User;
+
 
 class UserFactory implements UserFactoryInterface
 {

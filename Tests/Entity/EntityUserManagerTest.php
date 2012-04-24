@@ -11,7 +11,7 @@
 
 namespace MQM\UserBundle\Test\Entity;
 
-use Symfony\Bundle\FrameworkBundle\Tests\Functional\AppKernel;
+
 use MQM\UserBundle\Entity\User;
 use MQM\UserBundle\Entity\UserManager;
 use MQM\UserBundle\Entity\UserFactory;
