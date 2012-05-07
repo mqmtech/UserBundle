@@ -1,0 +1,5 @@
+#Test
+test: Esto es un test de traducción
+
+user_registration:
+    password_min_length: "Debe contener almenos 6 caracteres"

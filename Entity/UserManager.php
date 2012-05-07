@@ -78,7 +78,43 @@ class UserManager implements UserManagerInterface {
         else {
             throw new \Exception("Custom Exception: No SecurityContext has been setted in UserManager");
         }
-    }  
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function validateUnique(UserInterface $user, $property)
+    {
+       $fields = array_map('trim', explode(',', $property));
+       $criteria = $this->getCriteria($user, $fields);
+       $users = $this->getRepository()->findBy($criteria);
+       if ($users == null || empty($user)) {
+           return true;
+       }
+       if ($this->anyIsUser($user, $users)) {
+           return true;
+       }
+
+       return false;
+    }
+
+    /**
+     * Indicates whether the given user and all compared objects correspond to the same record.
+     *
+     * @param UserInterface $user
+     * @param array         $comparisons
+     * @return Boolean
+     */
+    protected function anyIsUser($user, array $comparisons)
+    {
+        foreach ($comparisons as $comparison) {
+            if (!$user->isUser($comparison)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
     
     /**
      * {@inheritDoc} 
@@ -99,7 +135,7 @@ class UserManager implements UserManagerInterface {
         }
         
         return $isDBUser;
-    }    
+    }
     
     /**
      * {@inheritDoc} 
@@ -160,5 +196,28 @@ class UserManager implements UserManagerInterface {
     protected function getRepository()
     {
         return $this->repository;
+    }
+
+    /**
+     * Gets the criteria used to find conflictual entities.
+     *
+     * @param UserInterface $user
+     * @param array         $fields
+     * @return array
+     */
+    protected function getCriteria($user, array $fields)
+    {
+        $class = $this->getUserFactory()->getUserClass();
+        $classMetadata = $this->entityManager->getClassMetadata($class);
+        $criteria = array();
+        foreach ($fields as $field) {
+            if (!$classMetadata->hasField($field)) {
+                throw new \InvalidArgumentException(sprintf('The "%s" class metadata does not have any "%s" field or association mapping.', $class, $field));
+            }
+
+            $criteria[$field] = $classMetadata->getFieldValue($user, $field);
+        }
+
+        return $criteria;
     }
 }

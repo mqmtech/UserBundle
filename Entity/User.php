@@ -3,7 +3,6 @@
 namespace MQM\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 
 use MQM\UserBundle\Model\UserInterface;
@@ -24,31 +23,28 @@ class User implements UserInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
-     /**
+
+    /**
      * @var string $username
      *
      * @ORM\Column(name="username", type="string", length=255, unique=true, nullable=true)
      */
     private $username;
-    
+
     /**
-     * @Assert\NotBlank(message = "No puede estar vacio")
-     * @Assert\MinLength(limit = 4, message = "Debe contener almenos 6 caracteres")
-     * 
      * @var string $password
      *
      * @ORM\Column(name="password", type="string", length=255, nullable=true)
      */
     private $password;
-    
+
     /**
      * @var string $permissionType
      *
      * @ORM\Column(name="permissionType", type="string", length=255, nullable=true)
      */
     private $permissionType;
-    
+
     /**
      * @var boolean $isEnabled
      *
@@ -60,7 +56,6 @@ class User implements UserInterface
      * @var string $firstName
      *
      * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
-     * @Assert\MinLength(2)
      */
     private $firstName;
 
@@ -72,9 +67,6 @@ class User implements UserInterface
     private $lastName;
 
     /**
-     * @Assert\NotBlank(message = "No puede estar vacio")
-     * @Assert\Email(message = "No es un email")
-     * 
      * @var string $email
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
@@ -87,59 +79,56 @@ class User implements UserInterface
      * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     private $address;
-    
+
     /**
      * @var string $firmName // razon social in spanish
      *
      * @ORM\Column(name="firmName", type="string", length=255, nullable=true)
      */
     private $firmName;
-    
+
     /**
-     * @Assert\MinLength(limit = 5, message = "Debe estar compuesto por, como mínimo, mínimo 5 caracteres")
      * @var string $vatin // value added tax identification number, CIF/NIF in spanish
      *
      * @ORM\Column(name="vatin", type="string", length=255, nullable=true)
      */
     private $vatin;
-    
+
     /**
      * @var string $zipCode // Codigo Postal in spanish
      *
      * @ORM\Column(name="zipCode", type="string", length=255, nullable=true)
      */
     private $zipCode;
-    
+
     /**
-     * @var string $city 
+     * @var string $city
      *
      * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
-    
+
     /**
-     * @var string $province 
+     * @var string $province
      *
      * @ORM\Column(name="province", type="string", length=255, nullable=true)
      */
     private $province;
-    
+
     /**
-     * @Assert\MinLength(limit = 5, message = "Debe estar compuesto por, como mínimo, mínimo 5 números")
-     * @var string $phone 
+     * @var string $phone
      *
      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      */
     private $phone;
-    
+
     /**
-     * @Assert\MinLength(limit = 5, message = "Debe estar compuesto por, como mínimo, mínimo 5 números")
-     * @var string $fax 
+     * @var string $fax
      *
      * @ORM\Column(name="fax", type="string", length=255, nullable=true)
      */
     private $fax;
-    
+
     /**
      * @var datetime $createdAt
      *
@@ -153,127 +142,145 @@ class User implements UserInterface
      * @ORM\Column(name="modifiedAt", type="datetime", nullable=true)
      */
     private $modifiedAt;
-    
+
     /**
      *
      * @var ShoppingCartInterface $shoppingCart;
-     * 
-     * @ORM\OneToOne(targetEntity="MQM\ShoppingCartBundle\Entity\ShoppingCart", inversedBy="user", cascade={"persist", "remove"}) 
+     *
+     * @ORM\OneToOne(targetEntity="MQM\ShoppingCartBundle\Entity\ShoppingCart", inversedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="shoppingCartId", referencedColumnName="id", nullable=true)
      */
     private $shoppingCart;
-    
+
     /**
      *
      * @var array $orders
-     * 
+     *
      * @ORM\OneToMany(targetEntity="MQM\OrderBundle\Entity\Order",  mappedBy="user", cascade={"persist", "remove"})
      */
     private $orders;
-    
+
     /**
      *
      * @param string $username
      * @param string $password
-     * @param string $permissionType 
-     * 
+     * @param string $permissionType
+     *
      * WARNING: password must be already encoded by a higher layer (tipically UserManager)
      */
-    public function __construct($username = null, $password = null, $permissionType = self::ROLE_USER, $isEnabled = self::DEFAULT_IS_ENABLED) 
-    {        
-        if($username){
+    public function __construct($username = null, $password = null, $permissionType = self::ROLE_USER, $isEnabled = self::DEFAULT_IS_ENABLED)
+    {
+        if ($username) {
             $this->setUsername($username);
         }
-        if($password){
+        if ($password) {
             $this->setPassword($password);
         }
-        if($permissionType){
+        if ($permissionType) {
             $this->setPermissionType($permissionType);
         }
-        
-        $this->setIsEnabled($isEnabled);        
-        $this->setCreatedAt(new \DateTime('now'));                
+
+        $this->setIsEnabled($isEnabled);
+        $this->setCreatedAt(new \DateTime('now'));
     }
-    
-    public function getOffer() {
+
+    public function getOffer()
+    {
         return $this->offer;
     }
 
-    public function setOffer($offer) {
+    public function setOffer($offer)
+    {
         $this->offer = $offer;
     }
 
-        
-    public function getFirmName() {
+
+    public function getFirmName()
+    {
         return $this->firmName;
     }
 
-    public function setFirmName($firmName) {
+    public function setFirmName($firmName)
+    {
         $this->firmName = $firmName;
     }
 
-    public function getVatin() {
+    public function getVatin()
+    {
         return $this->vatin;
     }
 
-    public function setVatin($vatin) {
+    public function setVatin($vatin)
+    {
         $this->vatin = $vatin;
     }
 
-    public function getZipCode() {
+    public function getZipCode()
+    {
         return $this->zipCode;
     }
 
-    public function setZipCode($zipCode) {
+    public function setZipCode($zipCode)
+    {
         $this->zipCode = $zipCode;
     }
 
-    public function getCity() {
+    public function getCity()
+    {
         return $this->city;
     }
 
-    public function setCity($city) {
+    public function setCity($city)
+    {
         $this->city = $city;
     }
 
-    public function getProvince() {
+    public function getProvince()
+    {
         return $this->province;
     }
 
-    public function setProvince($province) {
+    public function setProvince($province)
+    {
         $this->province = $province;
     }
 
-    public function getPhone() {
+    public function getPhone()
+    {
         return $this->phone;
     }
 
-    public function setPhone($phone) {
+    public function setPhone($phone)
+    {
         $this->phone = $phone;
     }
 
-    public function getFax() {
+    public function getFax()
+    {
         return $this->fax;
     }
 
-    public function setFax($fax) {
+    public function setFax($fax)
+    {
         $this->fax = $fax;
     }
 
-            
-    public function getOrders() {
+
+    public function getOrders()
+    {
         return $this->orders;
     }
 
-    public function setOrders($orders) {
+    public function setOrders($orders)
+    {
         $this->orders = $orders;
     }
-    
+
     /**
      *
-     * @param Order $order 
+     * @param Order $order
      */
-    public function addOrder($order) 
+    public function addOrder($order)
     {
         if ($this->getOrders() == null) {
             $this->orders = array();
@@ -281,30 +288,33 @@ class User implements UserInterface
         $this->orders[] = $order;
         $order->setUser($this); //IMPORTANT to set use to the order as it's the order the owner who saves the user in database
     }
-        
-    public function getShoppingCart() {
+
+    public function getShoppingCart()
+    {
         return $this->shoppingCart;
     }
 
-    public function setShoppingCart($shoppingCart) {
+    public function setShoppingCart($shoppingCart)
+    {
         $this->shoppingCart = $shoppingCart;
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-    
-    public function setId($id) {
+
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    
+
     /**
      * Set firstName
      *
@@ -318,7 +328,7 @@ class User implements UserInterface
     /**
      * Get firstName
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -338,14 +348,14 @@ class User implements UserInterface
     /**
      * Get lastName
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
         return $this->lastName;
     }
-    
-     /**
+
+    /**
      * Set username
      *
      * @param string $username
@@ -358,14 +368,14 @@ class User implements UserInterface
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getUsername()
     {
         return $this->username;
     }
-    
-     /**
+
+    /**
      * Set password
      *
      * @param string $password
@@ -378,7 +388,7 @@ class User implements UserInterface
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -398,7 +408,7 @@ class User implements UserInterface
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -418,7 +428,7 @@ class User implements UserInterface
     /**
      * Get address
      *
-     * @return string 
+     * @return string
      */
     public function getAddress()
     {
@@ -438,7 +448,7 @@ class User implements UserInterface
     /**
      * Get isEnabled
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsEnabled()
     {
@@ -458,7 +468,7 @@ class User implements UserInterface
     /**
      * Get permissionType
      *
-     * @return string 
+     * @return string
      */
     public function getPermissionType()
     {
@@ -478,7 +488,7 @@ class User implements UserInterface
     /**
      * Get createdAt
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreatedAt()
     {
@@ -498,31 +508,38 @@ class User implements UserInterface
     /**
      * Get modifiedAt
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getModifiedAt()
     {
         return $this->modifiedAt;
     }
-    
-    public function __toString(){
+
+    public function __toString()
+    {
         return $this->getUsername();
     }
-    
+
     /**
      * Helper function to distinguis between yml-defined users and db-full-featured users
-     * @return boolean 
+     * @return boolean
      */
-    public function isDBUser(){
+    public function isDBUser()
+    {
         if ($this->getPermissionType() == self::ROLE_ANON) {
             return false;
         }
-        
+
         return true;
     }
-    
+
+    public function isUser(UserInterface $user = null)
+    {
+        return null !== $user && $this->getId() === $user->getId();
+    }
+
     //** Implementing UserInterface Methods **//
-    
+
     public function equals(SecurityUserInterface $user)
     {
         /*if ($user->getUsername() != $this->getUsername) {
@@ -530,47 +547,47 @@ class User implements UserInterface
         }*/
         return true;
     }
-    
+
     public function eraseCredentials()
     {
         ;
     }
-    
+
     public function getRoles()
     {
         $rol = $this->getPermissionType();
-        
+
         $roles = array(
-            'ROLE_USER'=> self::ROLE_USER,
-            'ROLE_BASIC_STAFF'=> self::ROLE_BASIC_STAFF,
-            'ROLE_STAFF'=> self::ROLE_STAFF,
-            'ROLE_ADMIN'=> self::ROLE_ADMIN,
-            'ROLE_SUPER_ADMIN'=> self::ROLE_SUPER_ADMIN,
+            'ROLE_USER' => self::ROLE_USER,
+            'ROLE_BASIC_STAFF' => self::ROLE_BASIC_STAFF,
+            'ROLE_STAFF' => self::ROLE_STAFF,
+            'ROLE_ADMIN' => self::ROLE_ADMIN,
+            'ROLE_SUPER_ADMIN' => self::ROLE_SUPER_ADMIN,
         );
-        
-        if(!array_key_exists($rol, $roles)){
+
+        if (!array_key_exists($rol, $roles)) {
             $rol = self::ROLE_USER;
         }
-        
+
         //Verify whether user is enabled before letting him log
-        if($this->getIsEnabled()){
+        if ($this->getIsEnabled()) {
             return array($rol);
         }
-        else{
+        else {
             return array();
         }
         //End Verifying whether user is enabled before letting him log
     }
-    
+
     public function getSalt()
     {
         return null;
     }
-    
+
     //**End Implementing UserInterface Methods **//
-    
+
     //**Implmenting SerializableInterface methods **//
-   /**
+    /**
      * Serialize The username or the specified parameter for retrieving the user from DB
      * The rest of param are retrieved through database itself
      */
@@ -581,7 +598,7 @@ class User implements UserInterface
             'username' => $this->getUsername(),
         ));
     }
-    
+
     public function unserialize($serialized)
     {
         $serialized = explode(',', $serialized);

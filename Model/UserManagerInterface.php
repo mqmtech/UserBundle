@@ -36,7 +36,14 @@ interface UserManagerInterface
     /**
      * @return boolean 
      */
-    public function isDBUser($user);       
+    public function isDBUser($user);
+
+    /**
+     * @param UserInterface $user
+     * @param $string
+     * @return boolean
+     */
+    public function validateUnique(UserInterface $user, $property);
     
     /**
      * @return UserInterface
