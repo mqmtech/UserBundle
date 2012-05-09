@@ -20,7 +20,27 @@ mqm_user:
         short: La nueva contraseña es demasiado corta
     current_password:
         invalid: La contraseña ingresada no es válida
-    group:
-        blank: Por favor, ingrese un nombre
+    firstName:
+        blank: Por favor, ingrese su nombre
         short: El nombre es demasiado corto
-        long: El nombre es demasiado largo
+    lastName:
+        blank: Por favor, ingrese su apellido
+        short: El apellido es demasiado corto
+    address:
+        blank: Por favor, ingrese su dirección
+        short: La dirección es demasiado corta
+    city:
+        blank: Por favor, ingrese su ciudad
+        short: El nombre de la ciudad es demasiado corto
+    province:
+        blank: Por favor, ingrese su provincia
+        short: La provincia es demasiado corta
+    zipCode:
+        blank: Por favor, ingrese su codigo postal
+        short: el codigo postal es demasiado corto
+    vatin:
+        blank: Por favor, ingrese su DNI
+        short: DNI es demasiado corto
+    phone:
+        blank: Por favor, ingrese su teléfono
+        short: El número telefónico es demasiado corto
