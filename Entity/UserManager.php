@@ -146,6 +146,14 @@ class UserManager implements UserManagerInterface {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function findUsersBy(array $criteria)
+    {
+        return $this->getRepository()->findBy($criteria);
+    }
+
+    /**
      * {@inheritDoc} 
      */
     public function findUsers()

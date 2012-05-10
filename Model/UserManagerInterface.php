@@ -54,6 +54,11 @@ interface UserManagerInterface
      * @return array  
      */
     public function findUsers();
+
+    /**
+     * @return array
+     */
+    public function findUsersBy(array $criteria);
     
     /**
      * @return array 
