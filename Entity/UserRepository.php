@@ -20,6 +20,16 @@ class UserRepository extends EntityRepository
 
         return $users;
     }
+    
+    public function findStaffUsers($max = self::RECENT_MAX_RESULTS)
+    {
+        $em = $this->getEntityManager();
+        $sql = "select user from MQMUserBundle:User user WHERE user.permissionType <> '". self::USER_PERMISSION_TYPE ."' ORDER BY user.createdAt ".self::RECENT_ORDER_BY;
+        $q = $em->createQuery($sql);
+        $users = $q->getResult();
+
+        return $users;
+    }
 }
 
 

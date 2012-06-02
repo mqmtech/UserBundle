@@ -161,6 +161,11 @@ class UserManager implements UserManagerInterface {
         return $this->getRepository()->findAll();
     }
     
+    public function findStaffUsers()
+    {
+        return $this->getRepository()->findStaffUsers();
+    }
+    
     /**
      * {@inheritDoc} 
      */

@@ -12,6 +12,9 @@
             <option name="groups">
                 <value>Registration</value>
                 <value>Profile</value>
+                <value>Revision</value>
+                <value>StaffRegistration</value>
+                <value>StaffRevision</value>
             </option>
         </constraint>
 
@@ -21,6 +24,7 @@
             <option name="groups">
                 <value>Registration</value>
                 <value>Profile</value>
+                <value>Revision</value>
             </option>
         </constraint>
 
@@ -30,6 +34,9 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
+                    <value>StaffRegistration</value>
+                    <value>StaffRevision</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
@@ -38,6 +45,9 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
+                    <value>StaffRegistration</value>
+                    <value>StaffRevision</value>
                 </option>
             </constraint>
             <constraint name="MaxLength">
@@ -46,6 +56,9 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
+                    <value>StaffRegistration</value>
+                    <value>StaffRevision</value>
                 </option>
             </constraint>
             <constraint name="Email">
@@ -53,6 +66,9 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
+                    <value>StaffRegistration</value>
+                    <value>StaffRevision</value>
                 </option>
             </constraint>
         </property>
@@ -63,6 +79,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>StaffRegistration</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
@@ -71,6 +88,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>StaffRegistration</value>
                 </option>
             </constraint>
         </property>
@@ -81,6 +99,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
@@ -89,6 +108,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
                 </option>
             </constraint>
         </property>
@@ -99,6 +119,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
@@ -107,6 +128,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
                 </option>
             </constraint>
         </property>
@@ -117,6 +139,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
@@ -125,6 +148,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
                 </option>
             </constraint>
         </property>
@@ -135,6 +159,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
@@ -143,6 +168,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
                 </option>
             </constraint>
         </property>
@@ -153,6 +179,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
@@ -161,6 +188,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
                 </option>
             </constraint>
         </property>
@@ -171,6 +199,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
@@ -179,6 +208,7 @@
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
+                    <value>Revision</value>
                 </option>
             </constraint>
         </property>

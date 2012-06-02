@@ -54,6 +54,11 @@ interface UserManagerInterface
      * @return array  
      */
     public function findUsers();
+    
+    /**
+     * @return array
+     */
+    public function findStaffUsers();
 
     /**
      * @return array
