@@ -32,6 +32,12 @@ interface UserManagerInterface
      * @return UserInterface
      */
     public function getCurrentUser();
+
+    /**
+     *
+     * @return UserInterface
+     */
+    public function refreshUser(UserInterface $user);
     
     /**
      * @return boolean 

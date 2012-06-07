@@ -83,6 +83,16 @@ class UserManager implements UserManagerInterface {
     /**
      * {@inheritDoc}
      */
+    public function refreshUser(UserInterface $user)
+    {
+        return $this->findUserBy(array(
+            'id' => $user->getId()
+        ));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function validateUnique(UserInterface $user, $property)
     {
        $fields = array_map('trim', explode(',', $property));
