@@ -38,11 +38,29 @@ interface UserManagerInterface
      * @return UserInterface
      */
     public function refreshUser(UserInterface $user);
+
+    /**
+     *
+     * @return UserInterface
+     */
+    public function findUserByUsernameOrEmail($usernameOrEmail);
+
+    /**
+     * @param string $username
+     * @return UserInterface
+     */
+    public function findUserByUsername($username);
+
+    /**
+     * @param string $email
+     * @return UserInterface
+     */
+    public function findUserByEmail($email);
     
     /**
      * @return boolean 
      */
-    public function isDBUser($user);
+    public function isLoggedIn($user);
 
     /**
      * @param UserInterface $user

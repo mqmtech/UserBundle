@@ -92,7 +92,7 @@ interface UserInterface extends SecurityUserInterface, \Serializable
     
     public function getModifiedAt();
     
-    public function isDBUser();
+    public function isLoggedIn();
 
     public function isUser(UserInterface $user = null);
     

@@ -9,8 +9,8 @@ interface UserFactoryInterface
     /**
      * @return UserInterface 
      */
-    public function createUser();    
-    
+    public function createUser();
+
     /**
      * @return string 
      */

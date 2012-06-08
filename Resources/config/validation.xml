@@ -11,10 +11,9 @@
             <option name="message">mqm_user.email.already_used</option>
             <option name="groups">
                 <value>Registration</value>
-                <value>Profile</value>
-                <value>Revision</value>
+                <value>Edition</value>
                 <value>StaffRegistration</value>
-                <value>StaffRevision</value>
+                <value>StaffEdition</value>
             </option>
         </constraint>
 
@@ -23,8 +22,7 @@
             <option name="message">mqm_user.username.already_used</option>
             <option name="groups">
                 <value>Registration</value>
-                <value>Profile</value>
-                <value>Revision</value>
+                <value>StaffEdition</value>
             </option>
         </constraint>
 
@@ -33,42 +31,38 @@
                 <option name="message">mqm_user.email.blank</option>
                 <option name="groups">
                     <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Edition</value>
                     <value>StaffRegistration</value>
-                    <value>StaffRevision</value>
+                    <value>StaffEdition</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
-                <option name="limit">2</option>
+                <option name="limit">4</option>
                 <option name="message">mqm_user.email.short</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Registration</value>                    
+                    <value>Edition</value>
                     <value>StaffRegistration</value>
-                    <value>StaffRevision</value>
+                    <value>StaffEdition</value>
                 </option>
             </constraint>
             <constraint name="MaxLength">
-                <option name="limit">254</option>
+                <option name="limit">60</option>
                 <option name="message">mqm_user.email.long</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Registration</value>                    
+                    <value>Edition</value>
                     <value>StaffRegistration</value>
-                    <value>StaffRevision</value>
+                    <value>StaffEdition</value>
                 </option>
             </constraint>
             <constraint name="Email">
                 <option name="message">mqm_user.email.invalid</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Registration</value>                    
+                    <value>Edition</value>
                     <value>StaffRegistration</value>
-                    <value>StaffRevision</value>
+                    <value>StaffEdition</value>
                 </option>
             </constraint>
         </property>
@@ -77,8 +71,7 @@
             <constraint name="NotBlank">
                 <option name="message">mqm_user.password.blank</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
+                    <value>Registration</value>                    
                     <value>StaffRegistration</value>
                 </option>
             </constraint>
@@ -86,8 +79,7 @@
                 <option name="limit">4</option>
                 <option name="message">mqm_user.password.short</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
+                    <value>Registration</value>                    
                     <value>StaffRegistration</value>
                 </option>
             </constraint>
@@ -95,120 +87,162 @@
 
         <property name="firstName">
             <constraint name="NotBlank">
-                <option name="message">mqm_user.password.blank</option>
+                <option name="message">mqm_user.first_name.blank</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Registration</value>                    
+                    <value>Edition</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
-                <option name="limit">2</option>
-                <option name="message">mqm_user.password.short</option>
+                <option name="limit">1</option>
+                <option name="message">mqm_user.first_name.short</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Registration</value>                    
+                    <value>Edition</value>
                 </option>
             </constraint>
         </property>
 
         <property name="lastName">
             <constraint name="NotBlank">
-                <option name="message">mqm_user.password.blank</option>
+                <option name="message">mqm_user.last_name.blank</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Registration</value>                    
+                    <value>Edition</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
                 <option name="limit">2</option>
-                <option name="message">mqm_user.password.short</option>
+                <option name="message">mqm_user.last_name.short</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Registration</value>                    
+                    <value>Edition</value>
                 </option>
             </constraint>
         </property>
 
         <property name="address">
             <constraint name="NotBlank">
-                <option name="message">mqm_user.password.blank</option>
+                <option name="message">mqm_user.address.blank</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Registration</value>                    
+                    <value>Edition</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
-                <option name="limit">2</option>
-                <option name="message">mqm_user.password.short</option>
+                <option name="limit">4</option>
+                <option name="message">mqm_user.address.short</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Registration</value>                    
+                    <value>Edition</value>
                 </option>
             </constraint>
         </property>
 
         <property name="city">
             <constraint name="NotBlank">
-                <option name="message">mqm_user.password.blank</option>
+                <option name="message">mqm_user.city.blank</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Registration</value>                    
+                    <value>Edition</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
                 <option name="limit">2</option>
-                <option name="message">mqm_user.password.short</option>
+                <option name="message">mqm_user.city.short</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Registration</value>                    
+                    <value>Edition</value>
                 </option>
             </constraint>
         </property>
 
         <property name="province">
             <constraint name="NotBlank">
-                <option name="message">mqm_user.password.blank</option>
+                <option name="message">mqm_user.province.blank</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Registration</value>                    
+                    <value>Edition</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
                 <option name="limit">2</option>
-                <option name="message">mqm_user.password.short</option>
+                <option name="message">mqm_user.province.short</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Registration</value>                    
+                    <value>Edition</value>
                 </option>
             </constraint>
         </property>
 
         <property name="phone">
             <constraint name="NotBlank">
-                <option name="message">mqm_user.password.blank</option>
+                <option name="message">mqm_user.phone.blank</option>
                 <option name="groups">
-                    <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Registration</value>                    
+                    <value>Edition</value>
                 </option>
             </constraint>
             <constraint name="MinLength">
                 <option name="limit">6</option>
-                <option name="message">mqm_user.password.short</option>
+                <option name="message">mqm_user.phone.short</option>
+                <option name="groups">
+                    <value>Registration</value>                    
+                    <value>Edition</value>
+                </option>
+            </constraint>
+        </property>
+
+        <property name="zipCode">
+            <constraint name="NotBlank">
+                <option name="message">mqm_user.zip_code.blank</option>
                 <option name="groups">
                     <value>Registration</value>
-                    <value>Profile</value>
-                    <value>Revision</value>
+                    <value>Edition</value>
+                </option>
+            </constraint>
+            <constraint name="MinLength">
+                <option name="limit">3</option>
+                <option name="message">mqm_user.zip_code.short</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>Edition</value>
+                </option>
+            </constraint>
+        </property>
+
+        <property name="firmName">
+            <constraint name="NotBlank">
+                <option name="message">mqm_user.firm_name.blank</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>Edition</value>
+                </option>
+            </constraint>
+            <constraint name="MinLength">
+                <option name="limit">1</option>
+                <option name="message">mqm_user.firm_name.short</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>Edition</value>
+                </option>
+            </constraint>
+        </property>
+
+        <property name="vatin">
+            <constraint name="NotBlank">
+                <option name="message">mqm_user.vatin.blank</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>Edition</value>
+                </option>
+            </constraint>
+            <constraint name="MinLength">
+                <option name="limit">1</option>
+                <option name="message">mqm_user.vatin.short</option>
+                <option name="groups">
+                    <value>Registration</value>
+                    <value>Edition</value>
                 </option>
             </constraint>
         </property>

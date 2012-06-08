@@ -5,18 +5,18 @@ namespace MQM\UserBundle\Entity;
 use MQM\UserBundle\Model\UserFactoryInterface;
 use MQM\UserBundle\Model\UserInterface;
 
-class UserFactory implements UserFactoryInterface
+class StaffFactory implements UserFactoryInterface
 {
     private $userClass;
     
     public function __construct($userClass){
         $this->userClass = $userClass;                
     }
-
+    
     /**
      * {@inheritDoc}
      */
-    public function createUser($enabled = false, $role = UserInterface::ROLE_USER)
+    public function createUser($enabled = true, $role = UserInterface::ROLE_STAFF)
     {
         $user = new $this->userClass();
         $user->setPermissionType($role);

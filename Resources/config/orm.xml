@@ -8,6 +8,7 @@
         <parameter key="mqm_user.user_manager.class">MQM\UserBundle\Entity\UserManager</parameter>
         <parameter key="mqm_user.model.user.class">MQM\UserBundle\Entity\User</parameter>
         <parameter key="mqm_user.user_factory.class">MQM\UserBundle\Entity\UserFactory</parameter>
+        <parameter key="mqm_user.user_staff_factory.class">MQM\UserBundle\Entity\StaffFactory</parameter>
     </parameters>
 
     <services>
@@ -19,6 +20,10 @@
         </service>
         
         <service id="mqm_user.user_factory" class="%mqm_user.user_factory.class%" public="true">
+            <argument>%mqm_user.model.user.class%</argument>
+        </service>
+
+        <service id="mqm_user.user_staff_factory" class="%mqm_user.user_staff_factory.class%" public="true">
             <argument>%mqm_user.model.user.class%</argument>
         </service>
         

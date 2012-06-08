@@ -184,6 +184,11 @@ class User implements UserInterface
         $this->setCreatedAt(new \DateTime('now'));
     }
 
+    public function __toString()
+    {
+        return $this->firstName ? $this->firstName : $this->username ? $this->username : $this->email;
+    }
+
     public function getOffer()
     {
         return $this->offer;
@@ -515,22 +520,12 @@ class User implements UserInterface
         return $this->modifiedAt;
     }
 
-    public function __toString()
-    {
-        return $this->getUsername();
-    }
-
     /**
-     * Helper function to distinguis between yml-defined users and db-full-featured users
      * @return boolean
      */
-    public function isDBUser()
-    {
-        if ($this->getPermissionType() == self::ROLE_ANON) {
-            return false;
-        }
-
-        return true;
+    public function isLoggedIn()
+    {        
+        return self::ROLE_ANON != $this->getPermissionType() && $this->getPermissionType() != null;
     }
 
     public function isUser(UserInterface $user = null)
@@ -538,19 +533,13 @@ class User implements UserInterface
         return null !== $user && $this->getId() === $user->getId();
     }
 
-    //** Implementing UserInterface Methods **//
-
     public function equals(SecurityUserInterface $user)
     {
-        /*if ($user->getUsername() != $this->getUsername) {
-                return false;
-        }*/
         return true;
     }
 
     public function eraseCredentials()
     {
-        ;
     }
 
     public function getRoles()
@@ -569,14 +558,12 @@ class User implements UserInterface
             $rol = self::ROLE_USER;
         }
 
-        //Verify whether user is enabled before letting him log
         if ($this->getIsEnabled()) {
             return array($rol);
         }
         else {
             return array();
         }
-        //End Verifying whether user is enabled before letting him log
     }
 
     public function getSalt()
@@ -584,13 +571,6 @@ class User implements UserInterface
         return null;
     }
 
-    //**End Implementing UserInterface Methods **//
-
-    //**Implmenting SerializableInterface methods **//
-    /**
-     * Serialize The username or the specified parameter for retrieving the user from DB
-     * The rest of param are retrieved through database itself
-     */
     public function serialize()
     {
         return implode(',', array(
@@ -605,5 +585,4 @@ class User implements UserInterface
         $this->setId($serialized[0]);
         $this->setUsername($serialized[1]);
     }
-    //**End Implmenting SerializableInterface methods **//
 }

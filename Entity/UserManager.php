@@ -11,8 +11,8 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
-class UserManager implements UserManagerInterface {
-    
+class UserManager implements UserManagerInterface
+{
     private $securityContext;    
     private $entityManager;    
     private $repository;    
@@ -71,13 +71,27 @@ class UserManager implements UserManagerInterface {
         $securityContext = $this->getSecurityContext();
         if ($securityContext != null) {
             $token = $securityContext->getToken();
-            if ($token) 
-                return $token->getUser(); 
-            return 'anon';
+            if ($token){
+                $user = $token->getUser();
+                if (!is_string($user))
+                    return $this->refreshUser($user);
+
+                return $this->createAnonymousUser();
+            }
+            return $this->createAnonymousUser();
         }
         else {
             throw new \Exception("Custom Exception: No SecurityContext has been setted in UserManager");
         }
+    }
+    
+    private function createAnonymousUser()
+    {
+        $user = $this->userFactory->createUser();
+        $user->setPermissionType(UserInterface::ROLE_ANON);
+        $user->setUsername('anonymous');
+        
+        return $user;
     }
 
     /**
@@ -85,9 +99,35 @@ class UserManager implements UserManagerInterface {
      */
     public function refreshUser(UserInterface $user)
     {
-        return $this->findUserBy(array(
-            'id' => $user->getId()
-        ));
+        return $this->getRepository()->refreshUser($user);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function findUserByEmail($email)
+    {
+        return $this->findUserBy(array('email' => $email));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function findUserByUsername($username)
+    {
+        return $this->findUserBy(array('username' =>$username));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function findUserByUsernameOrEmail($usernameOrEmail)
+    {
+        if (filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)) {
+            return $this->findUserByEmail($usernameOrEmail);
+        }
+
+        return $this->findUserByUsername($usernameOrEmail);
     }
 
     /**
@@ -129,22 +169,22 @@ class UserManager implements UserManagerInterface {
     /**
      * {@inheritDoc} 
      */
-    public function isDBUser($user)
+    public function isLoggedIn($user)
     {
-        $isDBUser = false;
+        $isLoggedIn = false;
         if($user == null || gettype($user) == "string"){
-            $isDBUser = false;
+            $isLoggedIn = false;
         }
         else{
-            if(method_exists($user, "isDBUser")){
-                $isDBUser = $user->isDBUser();
+            if(method_exists($user, "isLoggedIn")){
+                $isLoggedIn = $user->isLoggedIn();
             }
             else{
-                $isDBUser = false;
+                $isLoggedIn = false;
             }
         }
         
-        return $isDBUser;
+        return $isLoggedIn;
     }
     
     /**
