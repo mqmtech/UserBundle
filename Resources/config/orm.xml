@@ -14,7 +14,6 @@
     <services>
         <service id="mqm_user.user_manager" class="%mqm_user.user_manager.class%" public="true">
             <argument type="service" id="mqm_user.entity_manager" />
-            <argument type="service" id="security.context" />
             <argument type="service" id="mqm_user.user_factory" />
             <argument type="service" id="mqm_cart.cart_manager" />            
         </service>

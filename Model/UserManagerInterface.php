@@ -26,12 +26,6 @@ interface UserManagerInterface
      * @param boolean $andFlush 
      */
     public function deleteUser(UserInterface $user, $andFlush = true);
-    
-    /**
-     *
-     * @return UserInterface
-     */
-    public function getCurrentUser();
 
     /**
      *
@@ -56,11 +50,6 @@ interface UserManagerInterface
      * @return UserInterface
      */
     public function findUserByEmail($email);
-    
-    /**
-     * @return boolean 
-     */
-    public function isLoggedIn($user);
 
     /**
      * @param UserInterface $user

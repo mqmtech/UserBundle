@@ -6,23 +6,19 @@ use MQM\UserBundle\Model\UserManagerInterface;
 use MQM\UserBundle\Model\UserFactoryInterface;
 use MQM\UserBundle\Model\UserInterface;
 use MQM\ShoppingCartBundle\Model\ShoppingCartManagerInterface;
-
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class UserManager implements UserManagerInterface
 {
-    private $securityContext;    
     private $entityManager;    
     private $repository;    
     private $userFactory;
     private $shoppingCartManager;
     
-    public function __construct(EntityManager $entityManager, SecurityContextInterface $securityContext, UserFactoryInterface $userFactory, ShoppingCartManagerInterface $shoppingCartManager) 
+    public function __construct(EntityManager $entityManager, UserFactoryInterface $userFactory, ShoppingCartManagerInterface $shoppingCartManager) 
     {
         $this->entityManager = $entityManager;
-        $this->securityContext = $securityContext;
         $this->userFactory = $userFactory;        
         $this->shoppingCartManager = $shoppingCartManager;
         $userClass = $userFactory->getUserClass();
@@ -61,37 +57,6 @@ class UserManager implements UserManagerInterface
         if ($andFlush) {
             $this->getEntityManager()->flush();
         }
-    }
-    
-    /**
-     * {@inheritDoc} 
-     */
-    public function getCurrentUser()
-    {
-        $securityContext = $this->getSecurityContext();
-        if ($securityContext != null) {
-            $token = $securityContext->getToken();
-            if ($token){
-                $user = $token->getUser();
-                if (!is_string($user))
-                    return $this->refreshUser($user);
-
-                return $this->createAnonymousUser();
-            }
-            return $this->createAnonymousUser();
-        }
-        else {
-            throw new \Exception("Custom Exception: No SecurityContext has been setted in UserManager");
-        }
-    }
-    
-    private function createAnonymousUser()
-    {
-        $user = $this->userFactory->createUser();
-        $user->setPermissionType(UserInterface::ROLE_ANON);
-        $user->setUsername('anonymous');
-        
-        return $user;
     }
 
     /**
@@ -169,27 +134,6 @@ class UserManager implements UserManagerInterface
     /**
      * {@inheritDoc} 
      */
-    public function isLoggedIn($user)
-    {
-        $isLoggedIn = false;
-        if($user == null || gettype($user) == "string"){
-            $isLoggedIn = false;
-        }
-        else{
-            if(method_exists($user, "isLoggedIn")){
-                $isLoggedIn = $user->isLoggedIn();
-            }
-            else{
-                $isLoggedIn = false;
-            }
-        }
-        
-        return $isLoggedIn;
-    }
-    
-    /**
-     * {@inheritDoc} 
-     */
     public function findUserBy(array $criteria)
     {
         return $this->getRepository()->findOneBy($criteria);
@@ -224,14 +168,6 @@ class UserManager implements UserManagerInterface
         $users = $this->getRepository()->findRecentUsers($max);
 
         return $users;
-    }
-    /**
-     *
-     * @return SecurityContextInterface
-     */
-    protected function getSecurityContext() 
-    {
-        return $this->securityContext;
     }
 
     /**

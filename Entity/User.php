@@ -7,6 +7,7 @@ use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 
 use MQM\UserBundle\Model\UserInterface;
 use MQM\ShoppingCartBundle\Model\ShoppingCartInterface;
+use MQM\PricingBundle\Entity\DiscountRule\DiscountByUserRule;
 
 /**
  *
@@ -145,20 +146,24 @@ class User implements UserInterface
 
     /**
      *
+     * @var array $orders
+     *
+     * @ORM\OneToMany(targetEntity="MQM\OrderBundle\Entity\Order",  mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $orders;
+    
+    /**
      * @var ShoppingCartInterface $shoppingCart;
      *
      * @ORM\OneToOne(targetEntity="MQM\ShoppingCartBundle\Entity\ShoppingCart", inversedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="shoppingCartId", referencedColumnName="id", nullable=true)
      */
     private $shoppingCart;
-
+    
     /**
-     *
-     * @var array $orders
-     *
-     * @ORM\OneToMany(targetEntity="MQM\OrderBundle\Entity\Order",  mappedBy="user", cascade={"persist", "remove"})
+     * @var DiscountByUserRule 
      */
-    private $orders;
+    private $discountRule;
 
     /**
      *
@@ -519,7 +524,17 @@ class User implements UserInterface
     {
         return $this->modifiedAt;
     }
+    
+    public function getDiscountRule()
+    {
+        return $this->discountRule;
+    }
 
+    public function setDiscountRule($discountRule)
+    {
+        $this->discountRule = $discountRule;
+    }
+        
     /**
      * @return boolean
      */

@@ -26,5 +26,6 @@ class MQMUserExtension extends Extension
         $loader->load('orm.xml');
         $loader->load('form.xml');
         $loader->load('validator.xml');
+        $loader->load('helper.xml');
     }
 }
