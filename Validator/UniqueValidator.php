@@ -15,7 +15,7 @@ class UniqueValidator extends ConstraintValidator
         $this->userManager = $userManager;
     }
 
-    public function isValid($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint)
     {
         if (!$value instanceof UserInterface) {
             throw new UnexpectedTypeException($value, 'MQM\UserBundle\Model\UserInterface');
@@ -24,11 +24,9 @@ class UniqueValidator extends ConstraintValidator
         $property = $constraint->property;
         $isUnique = $this->userManager->validateUnique($value, $property);
         if ($isUnique == false) {
-            $this->setMessage($constraint->message, array(
+            $this->context->addViolation($constraint->message, array(
                 '%property%' => $constraint->property,
             ));
         }
-
-        return $isUnique;
     }
 }
