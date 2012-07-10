@@ -572,13 +572,8 @@ class User implements UserInterface
         if (!array_key_exists($rol, $roles)) {
             $rol = self::ROLE_USER;
         }
-
-        if ($this->getIsEnabled()) {
-            return array($rol);
-        }
-        else {
-            return array();
-        }
+        
+        return array($rol);        
     }
 
     public function getSalt()

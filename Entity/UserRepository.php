@@ -39,9 +39,10 @@ class UserRepository extends EntityRepository implements UserProviderInterface
             return null;
 
         $em = $this->getEntityManager();
-        $sql = "SELECT user FROM MQMUserBundle:User user WHERE user.username = :username OR user.email = :username";
+        $sql = "SELECT user FROM MQMUserBundle:User user WHERE user.isEnabled = :isEnabled AND (user.username = :username OR user.email = :username)";
         $q = $em->createQuery($sql)->setParameters(array(
-            'username' => $username
+            'username' => $username,
+            'isEnabled' => true
         ));
 
         return $q->getOneOrNullResult();
