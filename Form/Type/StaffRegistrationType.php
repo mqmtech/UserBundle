@@ -54,7 +54,7 @@ class StaffRegistrationType extends AbstractType
         return 'mqm_user_form_type_registration_staff';
     }
 
-    public function getDefaultOptions()
+    public function getDefaultOptions(array $options)
     {
         return array(
             'data_class' => 'MQM\UserBundle\Entity\User',
